@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+    <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h3>售后状态 </h3>
+        </div>
+        <div class="col-xs-12">
+            <form  id="form" method="post" enctype="multipart/form-data">
+
+                <table class="table table-hover table-responsive">
+
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">订单类型:</td>
+                        <td>
+                            <input type="radio" value="0" name="status" id="status" {eq name="$info.status" value="0" }checked {/eq}/>待处理
+                            <input type="radio" value="1" name="status" {eq name="$info.status" value="1" }checked {/eq} />处理中
+                            <input type="radio" value="2" name="status" {eq name="$info.status" value="2" }checked {/eq} />已完成
+                        </td>
+                        <td>
+                            <div class="Validform_checktip" id="statusTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+
+                </table>
+                <div style="width: 500px;margin: 0 auto">
+                    <div>
+                        <input type="hidden" name="id" value="{$info.id}">
+                        <input type="submit" class="btn btn-primary" value="提交"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $.formValidator.initConfig({
+            formid: "form", debug: false, submitonce: true,
+            onerror: function (msg, obj, errorlist) {
+            },
+        });
+
+
+        $('#status').formValidator({onshow: '请选择处理进度', oncorrect: '输入合法'}).inputValidator({
+            min: 0,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '请选择处理进度'
+        });
+
+
+
+    });
+</script>
+
+</body>
+</html>

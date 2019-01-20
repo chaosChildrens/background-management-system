@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+    <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link href="__STATIC__/css/index.css" rel="stylesheet" type="text/css">
+    <title>后台首页</title>
+</head>
+<body style="min-height:800px; height: auto">
+<div class="container-fluid">
+
+    <nav class="navbar navbar-default row no-yj  navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-list-left" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">家电客户管理系统</a>
+            </div>
+
+            <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  {$Think.session.admin_name}({$role[$Think.session.admin_role]})<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{:url('Index/pass')}" target="right">修改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{:url('Index/logout')}">安全退出</a></li>
+                        </ul>
+                    </li>
+                 </ul>
+
+
+            </div>
+
+
+
+        </div>
+    </nav>
+
+
+    <div class="row" style="margin-top:70px">
+        <div class="  nav-left col-md-2 no-padding" id="nav-list-left">
+            <div class="nav-list" >
+                <ul>
+                    <li>
+                        <a>系统菜单</a>
+                    </li>
+                    {if condition="$Think.session.admin_role eq 0" }
+                    <li class="nav-left-dropdown">
+                        <a href="#">部门管理</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Dept/index")}' target="right">部门列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Dept/add")} target="right">添加部门<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-left-dropdown">
+                        <a href="#">用户管理</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Admin/index")}' target="right">用户列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Admin/add")} target="right">添加用户<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-left-dropdown">
+                        <a href="#">产品管理</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Category/index")}' target="right">产品分类<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Category/add")} target="right">添加分类<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Product/index")} target="right">产品列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Product/add")} target="right">添加产品<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-left-dropdown">
+                        <a href="#">客户管理</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Customer/index")}' target="right">客户列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Customer/add")} target="right">添加客户<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                    {/if}
+                    {if condition="($Think.session.admin_role eq 1) or ($Think.session.admin_role eq 2)" }
+                    <li class="nav-left-dropdown">
+                        <a href="#">家电销售</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Orders/index")}' target="right">销售列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Orders/add")} target="right">新增加销售<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                    {/if}
+                    {if condition="($Think.session.admin_role eq 1) or ($Think.session.admin_role eq 3)" }
+                    <li class="nav-left-dropdown">
+                        <a href="#">售后管理</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Repair/index")}' target="right">售后列表<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Repair/add")} target="right">新增售后<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                    {/if}
+                    <li class="nav-left-dropdown">
+                        <a href="#">统计分析</a>
+                        <ul class="nav-left-dropdown-menu">
+                            <li><a href='{:url("Count/yeji")}' target="right">销售业绩<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                            <li><a href={:url("Count/shouhou")} target="right">售后统计<span class="glyphicon glyphicon-menu-right pull-right"></span></a></li>
+                        </ul>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-right  col-md-10 col-md-offset-2">
+
+            <iframe name="right" class="iframe">
+
+            </iframe>
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $(".dropdownMenu").dropdown();
+        $(".nav-left-dropdown>a").click(function () {
+            if ($(this).attr("d") != 1 && $(this).attr("d") != undefined) {
+                $(this).removeClass("nav-left-dropdown-a");
+                $this = $(this);
+                $(this).next("ul").slideUp(300, function () { $this.removeClass("nav-left-bottrom-border"); $this.removeClass("nav-left-dropdown-ul") });
+
+                $(this).attr("d", "1");
+
+            } else {
+                $(this).addClass("nav-left-dropdown-a");
+                $(this).addClass("nav-left-bottrom-border");
+                $(this).next("ul").addClass("nav-left-dropdown-ul").slideDown(300);
+                $(this).attr("d", "2");
+
+            }
+
+
+        })
+    });
+
+</script>
+</html>

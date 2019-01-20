@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+    <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+        <div class="row" style="margin: 5px">
+            <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>产品管理</li>
+                    <li class="active">添加产品</li>
+                </ol>
+
+            </div>
+            <div class="col-md-12">
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="form" method="post" enctype="multipart/form-data">
+                            <div class="row" style="padding: 10px">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">所属类别</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="cid" id="cid" style="height: 35px">
+                                            <option value="">请选择所属类别</option>
+                                            {volist name="cateList" id="vo"}
+                                                <option value="{$vo.id}"  {eq name="$vo.level" value="1" }disabled{/eq}>{$vo.str}{$vo.name}</option>
+                                           {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">产品名称</label>
+                                    <div class="col-sm-5">
+                                        <input type="text"  id="name" name="name" class="form-control " placeholder="产品名称">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">产品图片</label>
+                                    <div class="col-sm-5">
+                                        <input type="file"  class="form-control" name="pic" id="pic" placeholder="产品图片">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">条形码</label>
+                                    <div class="col-sm-5">
+                                        <input type="tel" class="form-control" name="barcode" id="barcode" placeholder="输入条形码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">产品进价</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" class="form-control" name="price" id="price" placeholder="输入进价">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">产品售价</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" class="form-control" min="0" name="sale" id="sale" placeholder="输入售价">
+                                    </div>
+                                </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">保存添加</button>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+
+                        </form>
+                         <form enctype="multipart/form-data" method="post" id="uploadForm" action="{:url('index/Order/import')}">
+               
+				<div>
+                    <input type="file" name="excel" />
+                </div>
+                <div >
+                    <input type="submit"class="btn btn-primary" value="导入excel">
+                </div>
+            </form>
+            
+            <br><br>
+        </form>
+                    </div>
+            </div>
+        </div>
+
+</body>
+<script>
+    $(function () {
+        $("#form").submit(function () {
+            if($("#cid").val()==''){
+                $("#cid").focus();
+                return false;
+            }
+
+            if($("#name").val()==''){
+                $("#name").focus();
+                return false;
+            }
+            if($("#pic").val()==''){
+                $("#pic").focus();
+                return false;
+            }
+            if($("#barcode").val()==''){
+                $("#barcode").focus();
+                return false;
+            }
+            if($("#price").val()==''){
+                $("#price").focus();
+                return false;
+            }
+            if($("#sale").val()==''){
+                $("#sale").focus();
+                return false;
+            }
+
+
+        });
+
+    });
+</script>
+</html>

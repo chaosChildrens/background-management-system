@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+        <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h3>售后列表 </h3>
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>
+                        <center>售后号</center>
+                    </th>
+                    <th>
+                        <center>类型</center>
+                    </th>
+                    <th>
+                        <center>订单号</center>
+                    </th>
+                    <th>
+                        <center>产品名</center>
+                    </th>
+                    <th>
+                        <center>问题详细</center>
+                    </th>
+                    <th>
+                        <center>售后人员</center>
+                    </th>
+                    <th>
+                        <center>服务状态</center>
+                    </th>
+                    <th>
+                        <center>添加时间</center>
+                    </th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                {volist name="list" id="vo"}
+                <tr style="text-align: center">
+                    <td>{$vo.id} </td>
+                    <td>{eq name="vo.isVIP" value="0"}VIP订单{else/}普通订单{/eq} </td>
+                    <td> {$vo.ordersId}</td>
+                    <td> {$vo.goods}</td>
+                    <td> {$vo.info}</td>
+                    <td> {$vo.userName}</td>
+                    <td>{$status[$vo.status]}</td>
+                    <td>{$vo.time|date="Y年m月d日",###}</td>
+                    <td>
+                        <a href="{:url('status',array('id'=>$vo['id']))}">处理</a> |
+                        <a href="{:url('del',array('id'=>$vo['id']))}"
+                           onclick='return confirm("确定删除吗？")'>删除</a>
+                    </td>
+                <tr>
+                {/volist}
+
+            </table>
+
+                 </div>
+        <div class="pagination">
+        </div>
+    </div>
+</div>
+<script src='__STATIC__/js/jquery.min.js'></script>
+<script src="__STATIC__/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>订单管理</li>
+                    <li class="active">订单列表</li>
+                </ol>
+
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-hover table-responsive">
+
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>产品</th>
+                    <th>价格</th>
+                    <th>数量</th>
+                    <th>金额</th>
+                    <th>客户</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.gname}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.num}</td>
+                        <td>{$vo.money}</td>
+                        <td>{$vo.cname}</td>
+                        <td>{$vo.time}</td>
+                        <td>
+                            <a href="{:url('del',array('id'=>$vo['id']))}" onclick="return confirm('确认删除吗？')" class="btn btn-danger"> 删除</a>
+                        </td>
+                    </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+                 </div>
+        <div class="pagination">
+            {$list->render()}
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

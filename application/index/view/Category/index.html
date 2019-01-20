@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>产品管理</li>
+                    <li class="active">分类列表</li>
+                </ol>
+
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-hover table-responsive">
+
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>级别</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="cateList" id="vo"}
+
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.str}{$vo.name}</td>
+                        <td>{$vo.level}级分类</td>
+                        <td>
+                            {if condition="$vo.level lt 2"}
+                                <a href='{:url("add",array("pid"=>$vo["id"]))}' class="btn btn-info"> 添加子分类</a>
+                            {/if}
+                            <a href='{:url("edit",array("id"=>$vo["id"]))}' class="btn btn-primary"> 编辑</a>
+                            <a href="{:url('del',array('id'=>$vo['id']))}" onclick="return confirm('确认删除吗？')" class="btn btn-danger"> 删除</a>
+                        </td>
+                    </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+                 </div>
+        <div class="pagination">
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

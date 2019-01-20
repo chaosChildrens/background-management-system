@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>用户管理</li>
+                    <li class="active">用户列表</li>
+                </ol>
+
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-hover table-responsive">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>类别</th>
+                    <th>图片</th>
+                    <th>条形码</th>
+                    <th>进价</th>
+                    <th>售价</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.cname}</td>
+                        <td> <img src="__STATIC__/../Uploads/{$vo.pic}" style="width: 30px"></td>
+                        <td>{$vo.barcode}</td>
+                        <td>{$vo['price']}</td>
+                        <td>{$vo['sale']}</td>
+                        <td>
+                            <a href='{:url("edit",array("id"=>$vo["id"]))}' class="btn btn-primary"> 编辑</a>
+                            <a href="{:url('del',array('id'=>$vo['id']))}" onclick="return confirm('确认删除吗？')" class="btn btn-danger"> 删除</a>
+                        </td>
+                    </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+                 </div>
+        <div class="pagination">
+            {$list->render()}
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

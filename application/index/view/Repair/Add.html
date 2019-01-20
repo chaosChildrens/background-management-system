@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+    <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h3>添加售后 </h3>
+        </div>
+        <div class="col-xs-12">
+            <form  id="form" method="post" enctype="multipart/form-data">
+
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">订单号码:</td>
+                        <td>
+                            <input type="text" placeholder="请输入订单号" name="ordersId" id="ordersId"/></td>
+                        <td>
+                            <div class="Validform_checktip" id="ordersIdTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">订单类型:</td>
+                        <td>
+                            <input type="radio" value="0" name="isVIP" id="isVIP" checked/>VIP
+                            <input type="radio" value="1" name="isVIP" />普通
+                        </td>
+                        <td>
+                            <div class="Validform_checktip" id="isVIPTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">产品名称:</td>
+                        <td>
+                            <input type="text" placeholder="请输入产品名称" name="goods" id="goods"/></td>
+                        <td>
+                            <div class="Validform_checktip" id="goodsTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">产品编号:</td>
+                        <td>
+                            <input type="text" placeholder="请输入产品编号" name="gid" id="gid"/></td>
+                        <td>
+                            <div class="Validform_checktip" id="gidTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">售后人员:</td>
+                        <td>
+                            <input type="text" placeholder="请输入售后人员" name="userName" id="userName"/></td>
+                        <td>
+                            <div class="Validform_checktip" id="userNameTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;padding-left: 20px">问题详细:</td>
+                        <td>
+                            <textarea  placeholder="请输入问题详细" name="info" id="info" cols="70" rows="8"></textarea>
+                        </td>
+                        <td>
+                            <div class="Validform_checktip" id="infoTip" style="width:200px;"></div>
+                        </td>
+
+                    </tr>
+
+
+                </table>
+                <div style="width: 500px;margin: 0 auto">
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="提交"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $.formValidator.initConfig({
+            formid: "form", debug: false, submitonce: true,
+            onerror: function (msg, obj, errorlist) {
+            },
+        });
+
+        $('#ordersId').formValidator({onshow: '请输入订单号', oncorrect: '输入合法'}).inputValidator({
+            min: 1,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '订单号不能为空,请确认'
+        });
+        $('#isVIP').formValidator({onshow: '请选择订单类型', oncorrect: '输入合法'}).inputValidator({
+            min: 0,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '请选择订单类型,请确认'
+        });
+        $('#goods').formValidator({onshow: '请输入商品名称', oncorrect: '输入合法'}).inputValidator({
+            min: 1,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '产品名称不能为空,请确认'
+        });
+        $('#gid').formValidator({onshow: '请输入商品名称', oncorrect: '输入合法'}).inputValidator({
+            min: 1,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '产品编号不能为空,请确认'
+        });
+        $('#userName').formValidator({onshow: '请输入售后人员', oncorrect: '输入合法'}).inputValidator({
+            min: 1,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '售后人员不能为空,请确认'
+        });
+        $('#info').formValidator({onshow: '请输入售后问题', oncorrect: '输入合法'}).inputValidator({
+            min: 1,
+            empty: {leftempty: false, rightempty: false, emptyerror: '两边不能有空符号'},
+            onerror: '售后问题不能为空,请确认'
+        });
+
+
+
+    });
+</script>
+
+</body>
+</html>

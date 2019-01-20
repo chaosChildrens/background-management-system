@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>统计管理</li>
+                    <li class="active">业绩列表</li>
+                </ol>
+
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-hover table-responsive">
+
+                <thead>
+                <tr>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>业绩</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="counts" id="vo"}
+                    <tr {if condition="$i LT 4"} style="color: red"{/if}>
+                        <td>{$vo.id}</td>
+                        <td  >{$vo.username}</td>
+                        <td>{$vo.tel}</td>
+                        <td>{$vo.total}</td>
+                    </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+                 </div>
+        <div class="pagination">
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

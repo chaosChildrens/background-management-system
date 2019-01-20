@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__STATIC__/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+    <script src="__STATIC__/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+        <div class="row" style="margin: 5px">
+            <div class="page-header">
+                <ol class="breadcrumb">
+                    <li>后台首页</li>
+                    <li>订单管理</li>
+                    <li class="active">添加订单</li>
+                </ol>
+
+            </div>
+            <div class="col-md-12">
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="form" method="post" enctype="multipart/form-data">
+                            <div class="row" style="padding: 10px">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">选择商品</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="gid" id="gid" style="height: 35px">
+                                            <option value="">请选择商品</option>
+                                            {volist name="product" id="vo"}
+                                                <option value="{$vo.id}"  >{$vo.name}</option>
+                                           {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">选择客户</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="cid" id="cid" style="height: 35px">
+                                            <option value="">请选择客户</option>
+                                            {volist name="customer" id="vo"}
+                                            <option value="{$vo.id}"  >{$vo.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">销售数量</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" min="1"  id="num" name="num" class="form-control " placeholder="销售数量">
+                                    </div>
+                                </div>
+
+
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">保存添加</button>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </form>
+                    </div>
+            </div>
+        </div>
+
+</body>
+<script>
+    $(function () {
+        $("#form").submit(function () {
+            if($("#gid").val()==''){
+                $("#gid").focus();
+                return false;
+            }
+            if($("#cid").val()==''){
+                $("#cid").focus();
+                return false;
+            }
+
+            if($("#num").val()==''){
+                $("#num").focus();
+                return false;
+            }
+            if($("#pic").val()==''){
+                $("#pic").focus();
+                return false;
+            }
+            if($("#barcode").val()==''){
+                $("#barcode").focus();
+                return false;
+            }
+            if($("#price").val()==''){
+                $("#price").focus();
+                return false;
+            }
+            if($("#sale").val()==''){
+                $("#sale").focus();
+                return false;
+            }
+
+
+        });
+
+    });
+</script>
+</html>
